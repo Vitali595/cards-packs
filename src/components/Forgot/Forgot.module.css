@@ -1,0 +1,16 @@
+.description {
+    text-align: initial;
+    padding-bottom: 40px;
+    opacity: 0.8;
+}
+
+.rememberPass {
+    text-align: center;
+    padding: 20px 0;
+    opacity: 0.8;
+}
+
+.link {
+    text-decoration: none;
+    font-weight: bold;
+}
