@@ -1,0 +1,49 @@
+.main {
+    /*display: flex;*/
+    /*position: relative;*/
+}
+
+.header {
+    background: #EBE0E9;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.pages {
+    display: flex;
+}
+
+.image {
+    padding: 0 10px 0 35px;
+}
+
+.title {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 39px;
+
+    color: #2D2E46;
+}
+
+.text {
+    font-family: "SF UI Display", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    text-align: center;
+    letter-spacing: 0.4px;
+
+    color: #2D2E46;
+    padding-right: 35px;
+}
+
+.currentPage {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}

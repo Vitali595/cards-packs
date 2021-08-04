@@ -17,7 +17,7 @@ type InitialStateType = {
     profile: ResponseType
 }
 
-export const LoginReducer = (state: InitialStateType = InitialState, action: LoginReducerType) => {
+export const SignInReducer = (state: InitialStateType = InitialState, action: LoginReducerType) => {
     switch (action.type) {
         case 'login/SET-STATUS':
             return {...state, status: action.status}

@@ -1,7 +1,7 @@
 .paper {
     position: absolute;
     width: 413px;
-    height: 600px;
+    height: 550px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -11,6 +11,7 @@
 
     display: flex;
     justify-content: center;
+    /*align-items: center;*/
     text-align: center;
 }
 
@@ -18,19 +19,6 @@
     width: 350px;
 }
 
-.loader {
-    height: 20px;
-}
-
-.description {
-    font-family: "SF UI Display", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 24px;
-
-    color: #2D2E46;
-    padding: 60px 0;
-
-    opacity: 0.5;
+.register {
+    padding-top: 80px;
 }

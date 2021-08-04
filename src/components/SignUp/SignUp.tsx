@@ -1,35 +1,36 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../app/store";
-import {setPassTC} from "../../reducers/r4-SetPassReducer";
-import {Redirect, useParams} from "react-router-dom";
-import FormControl from "@material-ui/core/FormControl/FormControl";
-import TextField from "@material-ui/core/TextField/TextField";
-import FormGroup from "@material-ui/core/FormGroup/FormGroup";
+import * as React from 'react'
 import {useFormik} from "formik";
-import style from "./SetPass.module.css";
-import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import {loginTC} from "../../reducers/r1-LogupReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {FormControl, FormGroup, TextField, Button, Grid} from '@material-ui/core'
+import {AppRootStateType} from "../../app/store";
+import {Redirect} from "react-router-dom";
+import style from "./SignUp.module.css"
 import {SuperHeader} from "../../common/c6-SuperHeader/SuperHeader";
 import {SuperButton} from "../../common/c2-SuperButton/SuperButton";
 
 type FormikErrorType = {
+    email?: string
     password?: string
     confirmPassword?: string
 }
 
-export const SetPass: React.FC = () => {
-    const {loading, success, error} = useSelector((state: AppRootStateType) => state.setPass)
-    const {token} = useParams<{ token: string }>()
-    const dispatch = useDispatch()
-    const [redirect, setRedirect] = useState<boolean>(false)
+export const SignUp = () => {
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
-            password: "",
-            confirmPassword: ""
+            email: '',
+            password: '',
+            confirmPassword: '',
         },
         validate: (values) => {
             const errors: FormikErrorType = {}
+            if (!values.email) {
+                errors.email = 'Required';
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email address';
+            }
             if (!values.password) {
                 errors.password = "Required"
             } else if (values.password.length < 7) {
@@ -43,38 +44,31 @@ export const SetPass: React.FC = () => {
             return errors
         },
         onSubmit: values => {
-            dispatch(setPassTC(token, values.password, values.confirmPassword))
+            dispatch(loginTC(values))
             formik.resetForm()
         },
     })
 
-    useEffect(() => {
-        if (success && !redirect) {
-            setTimeout(() => setRedirect(true), 500)
-        }
-    }, [success, dispatch, redirect, setRedirect])
-
-    if (redirect && success) {
-        return <Redirect to={"/log_in"}/>
+    const {isLogUp} = useSelector((state: AppRootStateType) => state.logup)
+    if (isLogUp) {
+        return <Redirect from={'*'} to={'/log_in'}/>
     }
 
-    return <div>
+    return (
         <div className={style.paper}>
             <form onSubmit={formik.handleSubmit}>
                 <FormControl className={style.formControl}>
-                    <SuperHeader text={"Create new password"}/>
-                    <div className={style.loader}>
-                        {loading
-                            ? <div><CircularProgress/></div>
-                            : error
-                                ? <div style={{color: "red"}}>{error}<br/></div>
-                                : success
-                                    ? <div style={{color: "green"}}>Success!</div>
-                                    : <div><br/><br/></div>
-                        }
-                    </div>
-
+                    <SuperHeader text={"Sign Up"}/>
                     <FormGroup>
+                        <TextField
+                            label="Email"
+                            margin="dense"
+                            {...formik.getFieldProps('email')}
+                        />
+                        {formik.touched.email &&
+                        formik.errors.email
+                            ? <div style={{color: "red"}}>{formik.errors.email}</div>
+                            : <div><br/></div>}
                         <TextField
                             type="password"
                             label="Password"
@@ -95,13 +89,12 @@ export const SetPass: React.FC = () => {
                         formik.errors.confirmPassword
                             ? <div style={{color: "red"}}>{formik.errors.confirmPassword}</div>
                             : <div><br/></div>}
-                        <div className={style.description}>Create new password and we will send you further
-                            instructions to email
-                        </div>
-                        <SuperButton text={"Create new password"} disabled={loading}/>
+                            <div className={style.register}>
+                                <SuperButton text={"Register"}/>
+                            </div>
                     </FormGroup>
                 </FormControl>
             </form>
         </div>
-    </div>
+    )
 }

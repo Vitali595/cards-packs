@@ -28,7 +28,7 @@ export default function DenseTable() {
 
     const dispatch = useDispatch()
     const history = useHistory()
-    const profile = useSelector<AppRootStateType, ResponseType>(state => state.login.profile)
+    const profile = useSelector<AppRootStateType, ResponseType>(state => state.signIn.profile)
     const {
         cardPacks, page, pageCount, minCardsCount, maxCardsCount,
         sortPacks, cardPacksTotalCount, searchPackName

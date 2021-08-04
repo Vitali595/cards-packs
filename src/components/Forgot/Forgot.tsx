@@ -13,6 +13,9 @@ import {Paper} from "@material-ui/core";
 import style from "./Forgot.module.css";
 import {CheckPage} from "../SetPass/CheckPage/CheckPage";
 import {ForgotStatus} from "./ForgotStatus";
+import {SuperHeader} from "../../common/c6-SuperHeader/SuperHeader";
+import {SuperNavLink} from "../../common/c5-SuperNavLink/SuperNavLink";
+import {SuperButton} from "../../common/c2-SuperButton/SuperButton";
 
 type FormikErrorType = {
     email?: string
@@ -46,38 +49,30 @@ export const Forgot: React.FC = () => {
     }
 
     return (
-        <Grid container justify="center">
-        <Grid item xs={4}>
-            <Paper elevation={6} style={{padding: "20px", width: "300px"}}>
-                <form onSubmit={formik.handleSubmit}>
-                    <FormControl>
-                        <h2>It-incubator</h2>
-                        <h3>Forgot your password?</h3>
-                        <ForgotStatus/>
-                        <FormGroup>
-                            <TextField
-                                label="Email"
-                                margin="normal"
-                                {...formik.getFieldProps("email")}
-                            />
-                            {formik.touched.email &&
-                            formik.errors.email
-                                ? <div style={{color: "red"}}>{formik.errors.email}</div>
-                                : <div><br/></div>}
-                            <div className={style.description}>Enter your email address and we will send you further
-                                instructions
-                            </div>
-                            <Button type={'submit'} variant={'contained'} color={'primary'} size={"small"}
-                                    disabled={loading} style={{borderRadius: "15px"}}>send instructions</Button>
-                            <div className={style.rememberPass}>Did your remember your password?</div>
-                        </FormGroup>
-                    </FormControl>
-                </form>
-                <div className={style.link}>
-                    <NavLink to={"/log_in"} style={{textDecoration: "none", fontWeight: "bold"}}>Try logging
-                        in</NavLink>
-                </div>
-            </Paper>
-        </Grid>
-    </Grid>)
+        <div className={style.paper}>
+            <form onSubmit={formik.handleSubmit}>
+                <FormControl className={style.formControl}>
+                    <SuperHeader text={"Forgot your password?"}/>
+                    <ForgotStatus/>
+                    <FormGroup>
+                        <TextField
+                            label="Email"
+                            margin="dense"
+                            {...formik.getFieldProps("email")}
+                        />
+                        {formik.touched.email &&
+                        formik.errors.email
+                            ? <div style={{color: "red"}}>{formik.errors.email}</div>
+                            : <div><br/></div>}
+                        <div className={style.description}>Enter your email address and we will send you further
+                            instructions
+                        </div>
+                        <SuperButton text={"Send Instructions"} disabled={loading}/>
+                        <div className={style.rememberPass}>Did your remember your password?</div>
+                        <SuperNavLink path={"/log_in"} text={"Try logging in"}/>
+                    </FormGroup>
+                </FormControl>
+            </form>
+        </div>
+    )
 }

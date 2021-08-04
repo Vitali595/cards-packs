@@ -1,3 +1,41 @@
+.paper {
+    position: absolute;
+    width: 413px;
+    height: 470px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: #F9F9FE;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+}
+
+.title {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+
+    color: #2D2E46;
+    padding: 30px;
+}
+
 .description {
-    opacity: 0.8;
+    font-family: "SF UI Display", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #2D2E46;
+
+    opacity: 0.7;
+    padding: 30px 50px;
 }

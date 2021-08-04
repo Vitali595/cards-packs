@@ -1,21 +1,17 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid/Grid";
-import {Paper} from "@material-ui/core";
-// import mailImg from "../../../assets/images.png";
-import mailImg from "../../../assets/images/images.png"
+import mailImg from "../../../assets/images/Group 281.png"
 import style from "./CheckPage.module.css";
+import {SuperHeader} from "../../../common/c6-SuperHeader/SuperHeader";
 
 export const CheckPage: React.FC = () => {
     return (
-        <Grid container justify="center">
-            <Grid item xs={4}>
-                <Paper elevation={6} style={{padding: "20px", width: "300px"}}>
-                    <h2>It-incubator</h2>
-                    <img src={mailImg}/>
-                    <h3>Check Email</h3>
-                    <div className={style.description}>click the link in the message in your email</div>
-                </Paper>
-            </Grid>
-        </Grid>
+        <div className={style.paper}>
+            <SuperHeader/>
+            <div>
+                <img src={mailImg}/>
+            </div>
+            <div className={style.title}>Check Email</div>
+            <div className={style.description}>We’ve sent an Email with instructions to your email address</div>
+        </div>
     )
 }

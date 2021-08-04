@@ -11,6 +11,7 @@
 
     display: flex;
     justify-content: center;
+    /*align-items: center;*/
     text-align: center;
 }
 
@@ -18,9 +19,21 @@
     width: 350px;
 }
 
-.loader {
-    height: 20px;
+.forgot {
+    font-family: "SF UI Display", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+
+    text-align: right;
+    cursor: pointer;
+
+    color: #2D2E46;
+    margin: 35px 0 65px 246px;
 }
+
+
 
 .description {
     font-family: "SF UI Display", sans-serif;
@@ -30,7 +43,7 @@
     line-height: 24px;
 
     color: #2D2E46;
-    padding: 60px 0;
+    padding: 30px 0;
 
     opacity: 0.5;
 }

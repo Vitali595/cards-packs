@@ -33,7 +33,7 @@ export const Header = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const profile = useSelector<AppRootStateType, ResponseType>(state => state.login.profile)
+    const profile = useSelector<AppRootStateType, ResponseType>(state => state.signIn.profile)
     const classes = useStyles();
 
     const open = Boolean(anchorEl);

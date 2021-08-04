@@ -1,4 +1,3 @@
-// интерфейс для пропсов
 import React, {ReactElement, useEffect} from "react";
 import style from "./ModalWindow.module.css"
 
@@ -15,7 +14,7 @@ export const Modal = ({
                           footer = '',
                           onClose,
                       }: ModalProps) => {
-    // создаем обработчик нажатия клавиши Esc
+
     const onKeydown = ({key}: KeyboardEvent) => {
         switch (key) {
             case 'Escape':
@@ -24,14 +23,13 @@ export const Modal = ({
         }
     }
 
-    // c помощью useEffect цепляем обработчик к нажатию клавиш
-    // https://ru.reactjs.org/docs/hooks-effect.html
+
     useEffect(() => {
         document.addEventListener('keydown', onKeydown)
         return () => document.removeEventListener('keydown', onKeydown)
     })
 
-    // или возвращаем верстку модального окна
+
     return (
         <React.Fragment>
             <div className={style.modal} onClick={onClose}>
@@ -51,20 +49,3 @@ export const Modal = ({
         </React.Fragment>
     )
 }
-
-// export const ModalWindow = () => {
-//     const [isModal, setModal] = React.useState(false)
-//     const onClose = () => setModal(false)
-//     return (
-//         <React.Fragment>
-//             <button onClick={() => setModal(true)}>Клик-клик-клик</button>
-//             <Modal
-//                 visible={isModal}
-//                 title='Заголовок'
-//                 content={<p>Что-то важное</p>}
-//                 footer={<div><button onClick={onClose}>Закрыть</button> <button onClick={onClose}>Закрыть</button></div>}
-//                 onClose={onClose}
-//             />
-//         </React.Fragment>
-//     )
-// }
