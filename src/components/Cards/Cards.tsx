@@ -32,9 +32,9 @@ export default function Cards() {
     } = useSelector((state: AppRootStateType) => state.cards)
     const {cardsPackId} = useParams<{ cardsPackId: string }>()
 
-    useEffect(() => {
-        dispatch(setCardsTC(cardsPackId, maxGrade, minGrade, page, pageCount, searchCardQuestion, sortCards))
-    }, [dispatch, cardsPackId])
+    // useEffect(() => {
+    //     dispatch(setCardsTC(cardsPackId, maxGrade, minGrade, page, pageCount, searchCardQuestion, sortCards))
+    // }, [dispatch, cardsPackId])
 
     const classes = useStyles();
 
@@ -193,7 +193,7 @@ export default function Cards() {
                 </TableContainer>
             </div>
             <div>
-                <Paginator totalItemsCount={cardsTotalCount} currentPage={page} pageSize={pageCount} onPageChanged={onPageChanged}/>
+                {/*<Paginator totalItemsCount={cardsTotalCount} currentPage={page} pageSize={pageCount} onPageChanged={onPageChanged}/>*/}
                 <span>
                                 <select onChange={(e) => selectCallback(e.currentTarget.value)}>
                                 <option>4</option>

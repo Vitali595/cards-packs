@@ -1,12 +1,13 @@
 import React, {ChangeEvent, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
-import style from "./Deal.module.css"
+import style from "./PacksTable.module.css"
 import {AppRootStateType} from "../../../app/store";
 import {setPacksListTC} from "../../../reducers/r9-PacksReducer";
 import {useHistory} from "react-router-dom";
 import {ResponseType} from "../../../api/LoginAPI";
+import {SuperSmallButton} from "../../../common/c3-SuperSmallButton/SuperSmallButton";
 
-export const Table: React.FC = () => {
+export const PacksTable: React.FC = () => {
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -28,7 +29,7 @@ export const Table: React.FC = () => {
 
     return (
         <div>
-            <input type={"checkbox"} checked={isPrivatePacks} onChange={setPrivatePacks}/>
+            {/*<input type={"checkbox"} checked={isPrivatePacks} onChange={setPrivatePacks}/>*/}
             <table className={style.table}>
                 <thead className={style.thead}>
                 <tr className={style.tr}>
@@ -47,7 +48,11 @@ export const Table: React.FC = () => {
                         <td className={style.td}>{pack.cardsCount}</td>
                         <td className={style.td}>{pack.updated}</td>
                         <td className={style.td}>{pack.created}</td>
-                        <td className={style.td}>button</td>
+                        <td className={style.td}>
+                            <SuperSmallButton text={"Delete"} option={"red"}/>
+                            <SuperSmallButton text={"Edit"}/>
+                            <SuperSmallButton text={"Learn"}/>
+                        </td>
                     </tr>
                 })}
                 </tbody>

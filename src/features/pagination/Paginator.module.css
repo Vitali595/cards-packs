@@ -1,14 +1,71 @@
 .paginator {
-    margin: 10px;
+    padding-top: 15px;
 }
 
 .pageNumber {
-    padding: 2px;
-    border: 1px solid grey;
+    padding: 6px 10px;
+    margin: 0 6px;
+    border-radius: 2px;
+
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 14px;
+
+    text-align: center;
+
+    color: #2D2E46;
+}
+
+.pageNumber:hover {
+    background-color: #D7D8EF;
+    cursor: default;
 }
 
 .selectedPage {
-    padding: 2px;
-    font-weight: bold;
-    border: 1px solid black;
+    padding: 6px 10px;
+    margin: 0 6px;
+    background: #21268F;
+    border-radius: 2px;
+
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 14px;
+
+    text-align: center;
+
+    color: #F2F5F7;
+    cursor: default;
+}
+
+.arrow {
+    width: 10px;
+    padding: 3px;
+    margin-bottom: -6px;
+}
+
+.arrow:hover {
+    margin-bottom: -6px;
+    background-color: #D7D8EF;
+    border-radius: 2px;
+}
+
+.show {
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 14px;
+
+    color: #2D2E46;
+    padding: 0 5px 0 25px;
+}
+
+.select {
+    border: 1px solid #635D80;
+    border-radius: 2px;
+    padding: 3px;
 }

@@ -35,9 +35,9 @@ export default function DenseTable() {
     } = useSelector((state: AppRootStateType) => state.packs)
     const [isPrivatePacks, setIsPrivatePacks] = useState<boolean>(false)
 
-    useEffect(() => {
-        dispatch(setPacksListTC(undefined, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(setPacksListTC(undefined, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
+    // }, [dispatch])
 
     const [isCreate, setCreate] = useState<boolean>(false)
     const [updatingPackId, setUpdatingPackId] = useState("")
@@ -214,8 +214,8 @@ export default function DenseTable() {
                 </TableContainer>
             </div>
             <div>
-                <Paginator totalItemsCount={cardPacksTotalCount} currentPage={page} pageSize={pageCount}
-                           onPageChanged={onPageChanged}/>
+                {/*<Paginator totalItemsCount={cardPacksTotalCount} currentPage={page} pageSize={pageCount}*/}
+                {/*           onPageChanged={onPageChanged}/>*/}
                 <span>
                                 <select onChange={(e) => selectCallback(e.currentTarget.value)}>
                                 <option>4</option>
