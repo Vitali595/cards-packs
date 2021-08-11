@@ -1,7 +1,7 @@
 import React from "react"
 import {FormControl, FormGroup, TextField} from "@material-ui/core"
 import {useFormik} from "formik"
-import {NavLink, Redirect, useHistory} from "react-router-dom"
+import {Redirect, useHistory} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {LoginTC} from "../../reducers/r2-LoginReducer"
 import {Preloader} from "../Preloader/Preloader"
@@ -9,9 +9,9 @@ import {ErrorSnackbar} from "../Error/ErrorSnackbar"
 import {AppRootStateType} from "../../app/store"
 import {ResponseType} from "../../api/LoginAPI"
 import style from "./SignIn.module.css"
-import {SuperNavLink} from "../../common/c5-SuperNavLink/SuperNavLink";
-import {SuperButton} from "../../common/c2-SuperButton/SuperButton";
-import {SuperHeader} from "../../common/c6-SuperHeader/SuperHeader";
+import {SuperNavLink} from "../../common/c5-SuperNavLink/SuperNavLink"
+import {SuperButton} from "../../common/c2-SuperButton/SuperButton"
+import {SuperHeader} from "../../common/c6-SuperHeader/SuperHeader"
 
 type FormikErrorType = {
     email?: string
@@ -27,21 +27,21 @@ export const SignIn = function () {
 
     const formik = useFormik({
         initialValues: {
-            email: '',
-            password: '',
+            email: "",
+            password: "",
             rememberMe: false
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
             if (!values.email) {
-                errors.email = 'Required';
+                errors.email = "Required";
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-                errors.email = 'Invalid email address';
+                errors.email = "Invalid email address";
             }
             if (!values.password) {
-                errors.password = 'Required';
+                errors.password = "Required";
             } else if (values.password.length < 3) {
-                errors.password = 'Must be 3 characters or more';
+                errors.password = "Must be 3 characters or more";
             }
             return errors;
         },
@@ -52,7 +52,7 @@ export const SignIn = function () {
     })
 
     if (profile._id) {
-        return <Redirect to={'/main'}/>
+        return <Redirect to={"/main"}/>
     }
 
     return (

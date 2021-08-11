@@ -9,15 +9,15 @@ interface ModalProps {
 }
 
 export const Modal = ({
-                          title = '',
-                          content = '',
-                          footer = '',
+                          title = "",
+                          content = "",
+                          footer = "",
                           onClose,
                       }: ModalProps) => {
 
     const onKeydown = ({key}: KeyboardEvent) => {
         switch (key) {
-            case 'Escape':
+            case "Escape":
                 onClose()
                 break
         }
@@ -25,8 +25,8 @@ export const Modal = ({
 
 
     useEffect(() => {
-        document.addEventListener('keydown', onKeydown)
-        return () => document.removeEventListener('keydown', onKeydown)
+        document.addEventListener("keydown", onKeydown)
+        return () => document.removeEventListener("keydown", onKeydown)
     })
 
 
@@ -35,7 +35,7 @@ export const Modal = ({
             <div className={style.modal} onClick={onClose}>
                 <div className={style.modalDialog} onClick={e => e.stopPropagation()}>
                     <div className={style.modalHeader}>
-                        <h3 className={style.modalTitle}>{title}</h3>
+                        <div className={style.modalTitle}>{title}</div>
                         <span className={style.modalClose} onClick={onClose}>
             &times;
           </span>

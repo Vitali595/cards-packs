@@ -3,6 +3,7 @@ import style from "./MainPage.module.css"
 import cardsImage from "../../assets/images/Group 608.png";
 import userImage from "../../assets/images/Group 607.png";
 import {Profile} from "../Profile/Profile";
+import {PacksList} from "../PacksList/PacksList";
 
 export const MainPage: React.FC = () => {
 
@@ -11,6 +12,7 @@ export const MainPage: React.FC = () => {
     const packsListPage = {
         background: switchOn ? "#DCCCDB" : "#EBE0E9",
         borderBottom: switchOn ? "#21268F solid 3px" : "none",
+        opacity: switchOn ? "" : "0.5",
         padding: "15px",
         display: "flex",
         justifyContent: "center",
@@ -20,6 +22,7 @@ export const MainPage: React.FC = () => {
     const profilePage = {
         background: switchOn ? "#EBE0E9" : "#DCCCDB",
         borderBottom: !switchOn ? "#21268F solid 3px" : "none",
+        opacity: switchOn ? "0.5" : "",
         padding: "15px",
         display: "flex",
         justifyContent: "center",
@@ -43,7 +46,7 @@ export const MainPage: React.FC = () => {
                 <div style={{width: "200px"}}/>
             </div>
             <div className={style.currentPage}>
-                {!switchOn && <Profile/>}
+                {switchOn ? <PacksList isPrivate={false}/> : <Profile isPrivate={true}/>}
             </div>
         </div>
 

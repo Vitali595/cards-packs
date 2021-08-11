@@ -42,10 +42,10 @@ export default function DenseTable() {
     const [isCreate, setCreate] = useState<boolean>(false)
     const [updatingPackId, setUpdatingPackId] = useState("")
     const [deletedPackId, setDeletedPackId] = useState("")
-    const [title, setTitle] = useState<string>('')
+    const [title, setTitle] = useState<string>("")
     const onClose = () => setCreate(false)
-    const onCloseUpdate = () => setUpdatingPackId('')
-    const onCloseDelete = () => setDeletedPackId('')
+    const onCloseUpdate = () => setUpdatingPackId("")
+    const onCloseDelete = () => setDeletedPackId("")
 
     const setPrivatePacks = (e: ChangeEvent<HTMLInputElement>) => {
         setIsPrivatePacks(e.currentTarget.checked)
@@ -65,7 +65,7 @@ export default function DenseTable() {
     }
 
     const addNewCardPack = () => {
-        dispatch(createNewCardPackTC(profile._id, title, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
+        dispatch(createNewCardPackTC(profile._id, title))
         setTitle("")
         setCreate(false)
     }
@@ -75,7 +75,7 @@ export default function DenseTable() {
     }
 
     const deleteCardPack = (packId: string) => {
-        dispatch(deleteCardPackTC(packId, profile._id, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
+        dispatch(deleteCardPackTC(profile._id, packId))
         setUpdatingPackId("")
     }
 
@@ -132,7 +132,7 @@ export default function DenseTable() {
                 onClose={onClose}
             />
             }
-            <Search searchCallback={searchCallback}/>
+            {/*<Search searchCallback={searchCallback}/>*/}
             Private packs
             <input type={"checkbox"} checked={isPrivatePacks} onChange={setPrivatePacks}/>
             <button onClick={() => setCreate(true)}>add</button>
@@ -160,8 +160,7 @@ export default function DenseTable() {
                                 }
 
                                 const updateCardPack = () => {
-                                    dispatch(updateCardPackTC(pack.user_id, pack._id, title, pageCount, page,
-                                        searchPackName, minCardsCount, maxCardsCount, sortPacks))
+                                    dispatch(updateCardPackTC(pack.user_id, pack._id, title))
                                     setTitle('')
                                     setUpdatingPackId('')
                                 }

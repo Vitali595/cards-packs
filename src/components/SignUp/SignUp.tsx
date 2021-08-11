@@ -49,7 +49,7 @@ export const SignUp = () => {
         },
     })
 
-    const {isLogUp} = useSelector((state: AppRootStateType) => state.logup)
+    const {isLogUp} = useSelector((state: AppRootStateType) => state.signUp)
     if (isLogUp) {
         return <Redirect from={'*'} to={'/log_in'}/>
     }

@@ -106,7 +106,7 @@ export default function Cards() {
                 onClose={onClose}
             />
             }
-            <Search searchCallback={searchCallback}/>
+            {/*<Search searchCallback={searchCallback}/>*/}
             <div style={{display: "flex", justifyContent: "center"}}>
                 <ErrorSnackbar/>
                 <TableContainer component={Paper} style={{width: "60%"}}>

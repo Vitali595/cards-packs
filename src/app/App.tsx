@@ -33,7 +33,7 @@ function App() {
                 <Route path="/main" render={() => <MainPage/>}/>
                 <Route path="/log_in" render={() => <SignIn/>}/>
                 <Route path="/log_up" render={() => <SignUp/>}/>
-                <Route path="/profile" render={() => <Profile/>}/>
+                {/*<Route path="/profile" render={() => <Profile/>}/>*/}
                 <Route path="/forgot" render={() => <Forgot/>}/>
                 <Route path="/pack" render={() => <PacksList/>}/>
                 <Route path="/cards/:cardsPackId" render={() => <Cards/>}/>

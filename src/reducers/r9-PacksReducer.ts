@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {PacksAPI, ResponsePackType} from "../api/PacksAPI";
 import {setErrorMessageAC} from "./r6-ErrorReducer";
+import {AppRootStateType} from "../app/store";
 
 const InitialState = {
     cardPacks: [] as Array<ResponsePackType>,
@@ -53,7 +54,7 @@ const setAdditionalDataAC = (pageCount?: number, page?: number, searchPackName?:
 export type SetPacksListAT = ReturnType<typeof setPacksListAC>
 export type SetAdditionalDataAT = ReturnType<typeof setAdditionalDataAC>
 
-type ActionType = SetPacksListAT  | SetAdditionalDataAT
+type ActionType = SetPacksListAT | SetAdditionalDataAT
 
 export const setPacksListTC = (userId?: string, pageCount?: number, page?: number,
                                searchPackName?: string, minCardsCount?: number, maxCardsCount?: number,
@@ -72,30 +73,24 @@ export const setPacksListTC = (userId?: string, pageCount?: number, page?: numbe
             })
     }
 
-export const createNewCardPackTC = (userId: string, title: string, pageCount?: number, page?: number,
-                                    searchPackName?: string, minCardsCount?: number, maxCardsCount?: number,
-                                    sortPacks?: string) =>
-    (dispatch: any) => {
-        PacksAPI.createCardPack(title)
-            .then(res => {
-                dispatch(setPacksListTC(userId, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
-            })
-    }
-export const deleteCardPackTC = (id: string, userId: string, pageCount?: number, page?: number,
-                                 searchPackName?: string, minCardsCount?: number, maxCardsCount?: number,
-                                 sortPacks?: string) =>
-    (dispatch: any) => {
-        PacksAPI.deleteCardPack(id)
-            .then(res => {
-                dispatch(setPacksListTC(userId, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
-            })
-    }
-export const updateCardPackTC = (userId: string, id: string, title: string, pageCount?: number, page?: number,
-                                 searchPackName?: string, minCardsCount?: number, maxCardsCount?: number,
-                                 sortPacks?: string) =>
-    (dispatch: any) => {
-        PacksAPI.updateCardPack(id, title)
-            .then(res => {
-                dispatch(setPacksListTC(userId, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
-            })
-    }
+export const createNewCardPackTC = (userId: string, title: string) => (dispatch: any, getState: () => AppRootStateType) => {
+    const {pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks} = getState().packs
+    PacksAPI.createCardPack(title)
+        .then(res => {
+            dispatch(setPacksListTC(userId, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
+        })
+}
+export const deleteCardPackTC = (userId: string, id: string) => (dispatch: any, getState: () => AppRootStateType) => {
+    const {pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks} = getState().packs
+    PacksAPI.deleteCardPack(id)
+        .then(res => {
+            dispatch(setPacksListTC(userId, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
+        })
+}
+export const updateCardPackTC = (userId: string, id: string, title: string) => (dispatch: any, getState: () => AppRootStateType) => {
+    const {pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks} = getState().packs
+    PacksAPI.updateCardPack(id, title)
+        .then(res => {
+            dispatch(setPacksListTC(userId, pageCount, page, searchPackName, minCardsCount, maxCardsCount, sortPacks))
+        })
+}

@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import {LogUpReducer} from "../reducers/r1-LogupReducer";
+import {SignUpReducer} from "../reducers/r1-LogupReducer";
 import {SetPassReducer} from "../reducers/r4-SetPassReducer";
 import {ForgotReducer} from "../reducers/r7-ForgotReducer";
 import {SignInReducer} from "../reducers/r2-LoginReducer";
@@ -13,7 +13,7 @@ import {CardsReducer} from "../reducers/r10-CardsReducer";
 const rootReducer = combineReducers({
     profile: ProfileReducer,
     signIn: SignInReducer,
-    logup: LogUpReducer,
+    signUp: SignUpReducer,
     setPass: SetPassReducer,
     forgot: ForgotReducer,
     error: ErrorReducer,

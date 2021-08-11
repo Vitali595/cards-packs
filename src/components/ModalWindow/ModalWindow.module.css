@@ -10,13 +10,16 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.25);
+    /*background: #000000;*/
+    /*opacity: 0.6;*/
     animation-name: appear;
     animation-duration: 300ms;
 }
 
 .modalDialog {
-    width: 100%;
-    max-width: 550px;
+    width: 390px;
+    /*max-width: 550px;*/
+    /*height: 230px;*/
     background: white;
     position: relative;
     margin: 0 20px;
@@ -59,7 +62,13 @@
 }
 
 .modalTitle {
-    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #2D2E46;
 }
 
 @keyframes appear {

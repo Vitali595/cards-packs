@@ -1,16 +1,19 @@
-import React, {ChangeEvent, useState} from "react";
-import {Slider} from "@material-ui/core";
-import s from "./Search.module.css";
+import React, {ChangeEvent, useEffect, useState} from "react"
+import {Slider} from "@material-ui/core"
+import style from "./Search.module.css"
+import {SuperButton} from "../../common/c2-SuperButton/SuperButton"
 
 type SearchPropsType = {
     searchCallback: (value0: number, value1: number, text: string) => void
+    isOpenCallback: () => void
+
 }
 
-export const Search: React.FC<SearchPropsType> = ({searchCallback}) => {
+export const Search: React.FC<SearchPropsType> = ({searchCallback, isOpenCallback}) => {
 
     const [text, setText] = useState<string>("")
+    const [value, setValue] = useState<number[]>([0, 1000])
 
-    const [value, setValue] = useState<number[]>([0, 1000]);
     const handleChange = (event: any, newValue: number | number[]) => {
         setValue(newValue as number[])
     }
@@ -23,18 +26,28 @@ export const Search: React.FC<SearchPropsType> = ({searchCallback}) => {
         setText(e.currentTarget.value)
     }
 
+    useEffect(() => {
+        setText("")
+    }, [])
+
     return (
-        <div>
-            <input onChange={onChangeTextHandler} value={text}/>
-            <div className={s.range}>
-                <Slider
-                    value={value}
-                    onChange={handleChange}
-                    valueLabelDisplay="auto"
-                    aria-labelledby="range-slider"
-                />
+        // <div>
+        //     <input onChange={onChangeTextHandler} value={text}/>
+        //     <div className={s.range}>
+        //         <Slider
+        //             value={value}
+        //             onChange={handleChange}
+        //             valueLabelDisplay="auto"
+        //             aria-labelledby="range-slider"
+        //         />
+        //     </div>
+        //     <button onClick={onSearchCallback}>Search</button>
+        <div className={style.search}>
+            <div className={style.cell} id="container">
+                <div><input type="search" placeholder="Search..." onChange={onChangeTextHandler} value={text}/></div>
             </div>
-            <button onClick={onSearchCallback}>Search</button>
+            <SuperButton text={"Search"} onClick={onSearchCallback}/>
+            <SuperButton text={"Add new pack"} onClick={isOpenCallback}/>
         </div>
     )
 }

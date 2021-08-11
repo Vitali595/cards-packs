@@ -1,0 +1,9 @@
+.paper {
+    width: 1300px;
+    min-height: 640px;
+
+    background: #FEFEFF;
+    border-radius: 8px;
+
+    display: flex;
+}

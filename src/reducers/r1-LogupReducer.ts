@@ -5,7 +5,7 @@ import {logUpAPI} from "../api/LogupAPI";
 const InitialState = {isLogUp: false}
 type InitialStateType = typeof InitialState
 
-export const LogUpReducer = (state: InitialStateType = InitialState, action: ActionType) => {
+export const SignUpReducer = (state: InitialStateType = InitialState, action: ActionType) => {
     switch (action.type){
         case "logUn/SET-IS-LOGGED-UP":
             return {...state, isLogUp: action.isLogUp}

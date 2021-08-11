@@ -1,6 +1,5 @@
 import React from "react"
 import style from "./SuperHeader.module.css"
-import {FormControl} from "@material-ui/core";
 
 type SuperHeaderPropsType = {
     text?: string
