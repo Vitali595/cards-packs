@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/cards-packs/static/css/main.293973ba.chunk.css",
+    "main.js": "/cards-packs/static/js/main.ea67198b.chunk.js",
+    "main.js.map": "/cards-packs/static/js/main.ea67198b.chunk.js.map",
+    "runtime-main.js": "/cards-packs/static/js/runtime-main.d3b82d83.js",
+    "runtime-main.js.map": "/cards-packs/static/js/runtime-main.d3b82d83.js.map",
+    "static/js/2.4ea8971f.chunk.js": "/cards-packs/static/js/2.4ea8971f.chunk.js",
+    "static/js/2.4ea8971f.chunk.js.map": "/cards-packs/static/js/2.4ea8971f.chunk.js.map",
+    "static/js/3.2c953245.chunk.js": "/cards-packs/static/js/3.2c953245.chunk.js",
+    "static/js/3.2c953245.chunk.js.map": "/cards-packs/static/js/3.2c953245.chunk.js.map",
+    "index.html": "/cards-packs/index.html",
+    "static/css/main.293973ba.chunk.css.map": "/cards-packs/static/css/main.293973ba.chunk.css.map",
+    "static/js/2.4ea8971f.chunk.js.LICENSE.txt": "/cards-packs/static/js/2.4ea8971f.chunk.js.LICENSE.txt",
+    "static/media/defaultAvatar.cdbf4be5.png": "/cards-packs/static/media/defaultAvatar.cdbf4be5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d3b82d83.js",
+    "static/js/2.4ea8971f.chunk.js",
+    "static/css/main.293973ba.chunk.css",
+    "static/js/main.ea67198b.chunk.js"
+  ]
+}
