@@ -2,13 +2,19 @@ import React, {ChangeEvent, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import style from "./PacksTable.module.css"
 import {AppRootStateType} from "../../../app/store";
-import {createNewCardPackTC, setPacksListTC} from "../../../reducers/r9-PacksReducer";
+import {
+    createNewCardPackTC,
+    deleteCardPackTC,
+    setPacksListTC,
+    updateCardPackTC
+} from "../../../reducers/r9-PacksReducer";
 import {ResponseType} from "../../../api/LoginAPI";
 import {SuperSmallButton} from "../../../common/c3-SuperSmallButton/SuperSmallButton";
 import {SuperButton} from "../../../common/c2-SuperButton/SuperButton";
 import {Paginator} from "../../../features/pagination/Paginator";
 import {Search} from "../../../features/search/Search";
 import {Modal} from "../../ModalWindow/ModalWindow";
+import {Button, TextField} from "@material-ui/core";
 
 type PacksTablePropsType = {
     header: string
@@ -25,7 +31,11 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate}) =
     } = useSelector((state: AppRootStateType) => state.packs)
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [title, setTitle] = useState<string>("")
+    const [updatingPackId, setUpdatingPackId] = useState("")
+    const onCloseUpdate = () => setUpdatingPackId("")
+    const [deletedPackId, setDeletedPackId] = useState("")
     const onClose = () => setIsOpen(false)
+    const onCloseDelete = () => setDeletedPackId("")
 
     // const setPrivatePacks = (e: ChangeEvent<HTMLInputElement>) => {
     //     setIsPrivatePacks(e.currentTarget.checked)
@@ -38,6 +48,11 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate}) =
 
     const createTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
+    }
+
+    const deleteCardPack = (packId: string) => {
+        dispatch(deleteCardPackTC(profile._id, packId))
+        setUpdatingPackId("")
     }
 
     const addNewCardPack = () => {
@@ -79,10 +94,24 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate}) =
             {isOpen &&
             <Modal
                 title={"Add new pack"}
-                content={<input value={title} onChange={createTitle}/>}
-                footer={<tr>
-                    <button onClick={addNewCardPack}>add</button>
-                    <button onClick={onClose}>Close</button>
+                content={<TextField style={{width: "100%"}} value={title} onChange={createTitle} label="Name pack"/>}
+                footer={<tr className={style.buttons}>
+                    <Button
+                        style={{background: "#D7D8EF", borderRadius: "30px", width: "120px"}}
+                        variant="contained"
+                        size={"large"}
+                        onClick={onClose}
+                    >
+                        <div className={style.cancel}>Cancel</div>
+                    </Button>
+                    <Button
+                        style={{background: "#21268F", borderRadius: "30px", width: "120px"}}
+                        variant="contained"
+                        size={"large"}
+                        onClick={addNewCardPack}
+                    >
+                        <div className={style.save}>Save</div>
+                    </Button>
                 </tr>}
                 onClose={onClose}
             />
@@ -102,17 +131,83 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate}) =
                 <tbody className={style.tbody}>
                 {cardPacks.map((pack) => {
 
-                    return <tr className={style.tr} key={pack._id}>
-                        <td className={style.td}>{pack.name}</td>
-                        <td className={style.td}>{pack.cardsCount}</td>
-                        <td className={style.td}>{pack.updated}</td>
-                        <td className={style.td}>{pack.created}</td>
-                        <td className={style.td}>
-                            {pack.user_id === profile._id && <SuperSmallButton text={"Delete"} option={"red"}/>}
-                            {pack.user_id === profile._id && <SuperSmallButton text={"Edit"}/>}
-                            <SuperSmallButton text={"Learn"} disabled={pack.cardsCount === 0}/>
-                        </td>
-                    </tr>
+                    const updateCardPack = () => {
+                        dispatch(updateCardPackTC(pack.user_id, pack._id, title))
+                        setTitle("")
+                        setUpdatingPackId("")
+                    }
+
+                    return (
+                        <>
+                            {deletedPackId === pack._id && (
+                                <Modal
+                                    title={"Delete Pack"}
+                                    content={`Do you really want to remove ${pack.name}? All cards will be excluded from this course.`}
+                                    footer={
+                                        <tr className={style.buttons}>
+                                            <Button
+                                                style={{background: "#D7D8EF", borderRadius: "30px", width: "120px"}}
+                                                variant="contained"
+                                                size={"large"}
+                                                onClick={onCloseDelete}
+                                            >
+                                                <div className={style.cancel}>Cancel</div>
+                                            </Button>
+                                            <Button
+                                                style={{background: "#21268F", borderRadius: "30px", width: "120px"}}
+                                                variant="contained"
+                                                size={"large"}
+                                                onClick={() => deleteCardPack(pack._id)}
+                                            >
+                                                <div className={style.save}>Delete</div>
+                                            </Button>
+                                        </tr>
+                                    }
+                                    onClose={onCloseDelete}
+                                />
+                            )}
+                            {updatingPackId === pack._id && (
+                                <Modal
+                                    title={"Edit pack name"}
+                                    content={<TextField style={{width: "100%"}} value={title} onChange={createTitle} label="New pack name"/>}
+                                    footer={
+                                        <tr className={style.buttons}>
+                                            <Button
+                                                style={{background: "#D7D8EF", borderRadius: "30px", width: "120px"}}
+                                                variant="contained"
+                                                size={"large"}
+                                                onClick={onCloseUpdate}
+                                            >
+                                                <div className={style.cancel}>Cancel</div>
+                                            </Button>
+                                            <Button
+                                                style={{background: "#21268F", borderRadius: "30px", width: "120px"}}
+                                                variant="contained"
+                                                size={"large"}
+                                                onClick={updateCardPack}
+                                            >
+                                                <div className={style.save}>Delete</div>
+                                            </Button>
+                                        </tr>
+                                    }
+                                    onClose={() => setUpdatingPackId("")}
+                                />
+                            )}
+                            <tr className={style.tr} key={pack._id}>
+                                <td className={style.td}>{pack.name}</td>
+                                <td className={style.td}>{pack.cardsCount}</td>
+                                <td className={style.td}>{pack.updated}</td>
+                                <td className={style.td}>{pack.created}</td>
+                                <td className={style.td}>
+                                    {pack.user_id === profile._id
+                                    && <SuperSmallButton onClick={() => setDeletedPackId(pack._id)} text={"Delete"}
+                                                         option={"red"}/>}
+                                    {pack.user_id === profile._id
+                                    && <SuperSmallButton onClick={() => setUpdatingPackId(pack._id)} text={"Edit"}/>}
+                                    <SuperSmallButton text={"Learn"} disabled={pack.cardsCount === 0}/>
+                                </td>
+                            </tr>
+                        </>)
                 })}
                 </tbody>
             </table>

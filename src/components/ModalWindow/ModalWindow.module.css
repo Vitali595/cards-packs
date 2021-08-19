@@ -10,16 +10,13 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.25);
-    /*background: #000000;*/
-    /*opacity: 0.6;*/
     animation-name: appear;
     animation-duration: 300ms;
 }
 
 .modalDialog {
     width: 390px;
-    /*max-width: 550px;*/
-    /*height: 230px;*/
+    border-radius: 2px;
     background: white;
     position: relative;
     margin: 0 20px;
@@ -35,30 +32,48 @@
     animation-duration: 0.5s;
 }
 
-.modalHeader,
+.modalHeader {
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
 .modalFooter {
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: 1.5rem;
 }
+
 .modalHeader {
     border-bottom: 1px solid #dbdbdb;
     justify-content: space-between;
 }
+
 .modalFooter {
     border-top: 1px solid #dbdbdb;
     justify-content: flex-end;
 }
+
 .modalClose {
     cursor: pointer;
-    padding: 1rem;
+    padding: 1.5rem;
     margin: -1rem -1rem -1rem auto;
+    font-size: 40px;
 }
+
 .modalBody {
     overflow: auto;
 }
+
 .modalContent {
-    padding: 1rem;
+    font-family: "SF UI Display", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+
+    color: #000000;
+    padding: 1.5rem;
 }
 
 .modalTitle {
@@ -79,6 +94,7 @@
         opacity: 1;
     }
 }
+
 @keyframes slideIn {
     from {
         transform: translateY(-150px);

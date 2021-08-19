@@ -9,10 +9,50 @@
     padding-bottom: 15px;
 }
 
+.cancel {
+    font-family: "SF UI Display", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+
+    text-align: center;
+    letter-spacing: 0.01em;
+
+    color: #21268F;
+
+    opacity: 0.8;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    text-transform: none;
+}
+
+.save {
+    font-family: "SF UI Display", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+
+    text-align: center;
+    letter-spacing: 0.01em;
+
+    color: #ECECF9;
+
+    opacity: 0.8;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    text-transform: none;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.05), 0 10px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05), 0 10px 10px rgba(0, 0, 0, 0.05);
     text-align: center;
 }
 

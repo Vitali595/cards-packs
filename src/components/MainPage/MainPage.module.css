@@ -1,49 +1,49 @@
 .main {
-    /*display: flex;*/
-    /*position: relative;*/
+	/*display: flex;*/
+	/*position: relative;*/
 }
 
 .header {
-    background: #EBE0E9;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+	background: #ebe0e9;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 .pages {
-    display: flex;
+	display: flex;
 }
 
 .image {
-    padding: 0 10px 0 35px;
+	padding: 0 10px 0 35px;
 }
 
 .title {
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 39px;
+	font-family: 'Poppins', sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 26px;
+	line-height: 39px;
 
-    color: #2D2E46;
+	color: #2d2e46;
 }
 
 .text {
-    font-family: "SF UI Display", sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
+	font-family: 'SF UI Display', sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 16px;
 
-    text-align: center;
-    letter-spacing: 0.4px;
+	text-align: center;
+	letter-spacing: 0.4px;
 
-    color: #2D2E46;
-    padding-right: 35px;
+	color: #2d2e46;
+	padding-right: 35px;
 }
 
 .currentPage {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
 }
