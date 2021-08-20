@@ -76,7 +76,7 @@ table thead tr td {
 table tbody tr td {
     font-family: "SF UI Display", sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 14px;
     line-height: 16px;
 
@@ -90,4 +90,33 @@ table tbody tr:nth-child(odd) {
 
 table tbody tr:nth-child(even) {
     background-color: #F8F7FD;
+}
+
+.packName {
+    position: relative;
+    cursor: pointer;
+}
+.packName:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 1px;
+    background-color: black;
+    transition: width 0.5s;
+}
+
+.packName:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    color: #21268F;
+    height: 1px;
+    background-color: #21268F;
+    transition: width 0.5s;
 }

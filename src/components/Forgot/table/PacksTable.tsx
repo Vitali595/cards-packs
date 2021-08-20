@@ -15,14 +15,17 @@ import {Paginator} from "../../../features/pagination/Paginator";
 import {Search} from "../../../features/search/Search";
 import {Modal} from "../../ModalWindow/ModalWindow";
 import {Button, TextField} from "@material-ui/core";
+import {Redirect, useHistory} from "react-router-dom";
 
 type PacksTablePropsType = {
     header: string
     isPrivate: boolean
+    setCardsList: () => void
 }
 
-export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate}) => {
+export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate, setCardsList}) => {
 
+    const history = useHistory();
     const dispatch = useDispatch()
     const profile = useSelector<AppRootStateType, ResponseType>(state => state.signIn.profile)
     const {
@@ -169,7 +172,8 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate}) =
                             {updatingPackId === pack._id && (
                                 <Modal
                                     title={"Edit pack name"}
-                                    content={<TextField style={{width: "100%"}} value={title} onChange={createTitle} label="New pack name"/>}
+                                    content={<TextField style={{width: "100%"}} value={title} onChange={createTitle}
+                                                        label="New pack name"/>}
                                     footer={
                                         <tr className={style.buttons}>
                                             <Button
@@ -194,7 +198,9 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate}) =
                                 />
                             )}
                             <tr className={style.tr} key={pack._id}>
-                                <td className={style.td}>{pack.name}</td>
+                                <td className={style.td}>
+                                    <div className={style.packName} onClick={setCardsList}>{pack.name}</div>
+                                </td>
                                 <td className={style.td}>{pack.cardsCount}</td>
                                 <td className={style.td}>{pack.updated}</td>
                                 <td className={style.td}>{pack.created}</td>

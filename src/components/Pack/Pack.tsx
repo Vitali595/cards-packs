@@ -320,7 +320,7 @@ export default function DenseTable() {
                                     setTitle('');
                                     setUpdatingPackId('');
                                 };
-                                const getCards = () => {
+                                const  getCards = () => {
                                     history.push(`/cards/${pack._id}`);
                                 };
                                 return (

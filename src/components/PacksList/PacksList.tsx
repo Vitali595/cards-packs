@@ -8,10 +8,11 @@ import {AppRootStateType} from "../../app/store";
 import {ResponseType} from "../../api/LoginAPI";
 
 type PacksListPropsType = {
-    isPrivate: boolean
+    isPrivate: boolean,
+    setCardsList: () => void
 }
 
-export const PacksList: React.FC<PacksListPropsType> = ({isPrivate}) => {
+export const PacksList: React.FC<PacksListPropsType> = ({isPrivate, setCardsList}) => {
 
     const [switchOn, setSwitchOn] = useState<boolean>(false)
     const dispatch = useDispatch()
@@ -71,7 +72,7 @@ export const PacksList: React.FC<PacksListPropsType> = ({isPrivate}) => {
                 </div>
             </div>
             <div className={style.packsTable}>
-                <PacksTable header={"Packs list"} isPrivate={switchOn}/>
+                <PacksTable header={"Packs list"} isPrivate={switchOn} setCardsList={setCardsList}/>
             </div>
         </SuperPaper>
     )

@@ -9,12 +9,14 @@ import { SuperPaper } from '../../common/c7-SuperPaper/SuperPaper';
 import { setPacksListTC } from '../../reducers/r9-PacksReducer';
 import { PacksTable } from '../Forgot/table/PacksTable';
 import style from './Profile.module.css';
+import {PacksList} from "../PacksList/PacksList";
 
 type ProfilePropsType = {
-	isPrivate: boolean;
-};
+	isPrivate: boolean
+	setCardsList: () => void
+}
 
-export const Profile: React.FC<ProfilePropsType> = ({ isPrivate }) => {
+export const Profile: React.FC<ProfilePropsType> = ({ isPrivate, setCardsList }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const profile = useSelector<AppRootStateType, ResponseType>(
@@ -79,7 +81,7 @@ export const Profile: React.FC<ProfilePropsType> = ({ isPrivate }) => {
 				</div>
 			</div>
 			<div className={style.packsTable}>
-				<PacksTable header={'My packs list'} isPrivate={isPrivate} />
+				<PacksTable header={'My packs list'} isPrivate={isPrivate}  setCardsList={setCardsList}/>
 			</div>
 		</SuperPaper>
 	);

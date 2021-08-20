@@ -12,17 +12,18 @@ import Cards from "../components/Cards/Cards";
 import {SetPass} from "../components/SetPass/SetPass";
 import {Learn} from "../components/Learn/Learn";
 import {setUserProfileTC} from "../reducers/r2-LoginReducer";
+import {CardsList} from "../components/CardsList/CardsList";
 
 
 function App() {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.signIn.isLoggedIn)
 
-    useEffect(()=>{
-        if (!isLoggedIn){
+    useEffect(() => {
+        if (!isLoggedIn) {
             dispatch(setUserProfileTC())
         }
-    },[dispatch])
+    }, [dispatch])
 
 
     return (
@@ -34,8 +35,9 @@ function App() {
                 <Route path="/log_up" render={() => <SignUp/>}/>
                 {/*<Route path="/profile" render={() => <Profile/>}/>*/}
                 <Route path="/forgot" render={() => <Forgot/>}/>
-                <Route path="/pack" render={() => <PacksList isPrivate={true}/>}/>
-                <Route path="/cards/:cardsPackId" render={() => <Cards/>}/>
+                {/*<Route path="/pack" render={() => <PacksList isPrivate={true}/>}/>*/}
+                {/*<Route path="/card" render={() => <CardsList/>}/>*/}
+                {/*<Route path="/cards/:cardsPackId" render={() => <Cards/>}/>*/}
                 <Route path="/set_new_password/:token" render={() => <SetPass/>}/>
                 <Route path="/learn/:id" render={() => <Learn/>}/>
                 <Route path="/*" render={() => <SignIn/>}/>
