@@ -6,10 +6,11 @@ import {SuperButton} from "../../common/c2-SuperButton/SuperButton"
 type SearchPropsType = {
     searchCallback: (value0: number, value1: number, text: string) => void
     isOpenCallback: () => void
+    buttonName: string
 
 }
 
-export const Search: React.FC<SearchPropsType> = ({searchCallback, isOpenCallback}) => {
+export const Search: React.FC<SearchPropsType> = ({searchCallback, isOpenCallback, buttonName}) => {
 
     const [text, setText] = useState<string>("")
     const [value, setValue] = useState<number[]>([0, 1000])
@@ -47,7 +48,8 @@ export const Search: React.FC<SearchPropsType> = ({searchCallback, isOpenCallbac
                 <div><input type="search" placeholder="Search..." onChange={onChangeTextHandler} value={text}/></div>
             </div>
             <SuperButton text={"Search"} onClick={onSearchCallback}/>
-            <SuperButton text={"Add new pack"} onClick={isOpenCallback}/>
+            {/*<SuperButton text={"Add new pack"} onClick={isOpenCallback}/>*/}
+            <SuperButton text={buttonName} onClick={isOpenCallback}/>
         </div>
     )
 }

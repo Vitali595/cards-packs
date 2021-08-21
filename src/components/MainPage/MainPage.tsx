@@ -10,6 +10,8 @@ export const MainPage: React.FC = () => {
 
     const [switchOn, setSwitchOn] = useState<boolean>(false)
     const [isCards, setIsCards] = useState<boolean>(false)
+    const [packName, setPackName] = useState<string>("")
+    const [packId, setPackId] = useState<string>("")
 
     const packsListPage = {
         background: switchOn ? "#DCCCDB" : "#EBE0E9",
@@ -31,8 +33,10 @@ export const MainPage: React.FC = () => {
         setIsCards(false)
     }
 
-    const setCardsList = () => {
+    const setCardsList = (name: string, id: string) => {
         setIsCards(true)
+        setPackName(name)
+        setPackId(id)
     }
 
     const profilePage = {
@@ -62,7 +66,7 @@ export const MainPage: React.FC = () => {
                 <div style={{width: "200px"}}/>
             </div>
             <div className={style.currentPage}>
-                {isCards ? <CardsList/> : (switchOn
+                {isCards ? <CardsList packName={packName} packId={packId}/> : (switchOn
                     ? <PacksList isPrivate={false} setCardsList={setCardsList}/>
                     : <Profile isPrivate={true} setCardsList={setCardsList}/>)}
             </div>

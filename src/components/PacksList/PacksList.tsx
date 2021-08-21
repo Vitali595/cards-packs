@@ -9,7 +9,7 @@ import {ResponseType} from "../../api/LoginAPI";
 
 type PacksListPropsType = {
     isPrivate: boolean,
-    setCardsList: () => void
+    setCardsList: (packName: string, packId: string) => void
 }
 
 export const PacksList: React.FC<PacksListPropsType> = ({isPrivate, setCardsList}) => {

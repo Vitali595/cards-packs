@@ -1,4 +1,4 @@
-import {instance} from "./a1-instance";
+import {instance} from "./a1-instance"
 
 export const CardsAPI = {
     async getCards(cardsPack_id?: string, maxGrade?: number, minGrade?: number, page?: number,

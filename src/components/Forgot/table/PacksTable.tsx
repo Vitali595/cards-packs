@@ -20,7 +20,7 @@ import {Redirect, useHistory} from "react-router-dom";
 type PacksTablePropsType = {
     header: string
     isPrivate: boolean
-    setCardsList: () => void
+    setCardsList: (packName: string, packId: string) => void
 }
 
 export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate, setCardsList}) => {
@@ -120,7 +120,7 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate, se
             />
             }
             <div className={style.header}>{header}</div>
-            <Search searchCallback={searchCallback} isOpenCallback={isOpenCallback}/>
+            <Search searchCallback={searchCallback} isOpenCallback={isOpenCallback} buttonName={"Add new pack"}/>
             <table className={style.table}>
                 <thead className={style.thead}>
                 <tr className={style.tr}>
@@ -199,7 +199,7 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate, se
                             )}
                             <tr className={style.tr} key={pack._id}>
                                 <td className={style.td}>
-                                    <div className={style.packName} onClick={setCardsList}>{pack.name}</div>
+                                    <div className={style.packName} onClick={() => setCardsList(pack.name, pack._id)}>{pack.name}</div>
                                 </td>
                                 <td className={style.td}>{pack.cardsCount}</td>
                                 <td className={style.td}>{pack.updated}</td>
