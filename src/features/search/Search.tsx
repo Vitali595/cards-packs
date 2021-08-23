@@ -7,10 +7,11 @@ type SearchPropsType = {
     searchCallback: (value0: number, value1: number, text: string) => void
     isOpenCallback: () => void
     buttonName: string
+    isMyCards?: boolean
 
 }
 
-export const Search: React.FC<SearchPropsType> = ({searchCallback, isOpenCallback, buttonName}) => {
+export const Search: React.FC<SearchPropsType> = ({searchCallback, isOpenCallback, buttonName, isMyCards = true}) => {
 
     const [text, setText] = useState<string>("")
     const [value, setValue] = useState<number[]>([0, 1000])
@@ -48,8 +49,7 @@ export const Search: React.FC<SearchPropsType> = ({searchCallback, isOpenCallbac
                 <div><input type="search" placeholder="Search..." onChange={onChangeTextHandler} value={text}/></div>
             </div>
             <SuperButton text={"Search"} onClick={onSearchCallback}/>
-            {/*<SuperButton text={"Add new pack"} onClick={isOpenCallback}/>*/}
-            <SuperButton text={buttonName} onClick={isOpenCallback}/>
+            {isMyCards && <SuperButton text={buttonName} onClick={isOpenCallback}/>}
         </div>
     )
 }

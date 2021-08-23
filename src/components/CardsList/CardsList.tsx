@@ -10,9 +10,10 @@ import {setCardsTC} from "../../reducers/r10-CardsReducer";
 type CardsListPropsType = {
     packName: string
     packId: string
+    userId: string
 }
 
-export const CardsList: React.FC<CardsListPropsType> = ({packName, packId}) => {
+export const CardsList: React.FC<CardsListPropsType> = ({packName, packId, userId}) => {
 
     const dispatch = useDispatch()
 
@@ -28,7 +29,7 @@ export const CardsList: React.FC<CardsListPropsType> = ({packName, packId}) => {
     return (
         <SuperPaper>
             <div className={style.cardsTable}>
-                <CardsTable packName={packName} packId={packId}/>
+                <CardsTable packName={packName} packId={packId} userId={userId}/>
             </div>
         </SuperPaper>
     )

@@ -12,6 +12,7 @@ export const MainPage: React.FC = () => {
     const [isCards, setIsCards] = useState<boolean>(false)
     const [packName, setPackName] = useState<string>("")
     const [packId, setPackId] = useState<string>("")
+    const [userId, setUserId] = useState<string>("")
 
     const packsListPage = {
         background: switchOn ? "#DCCCDB" : "#EBE0E9",
@@ -20,7 +21,19 @@ export const MainPage: React.FC = () => {
         padding: "15px",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        cursor: "pointer"
+    }
+
+    const profilePage = {
+        background: switchOn ? "#EBE0E9" : "#DCCCDB",
+        borderBottom: !switchOn ? "#21268F solid 3px" : "none",
+        opacity: switchOn ? "0.5" : "",
+        padding: "15px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: "pointer"
     }
 
     const setProfile = () => {
@@ -33,20 +46,11 @@ export const MainPage: React.FC = () => {
         setIsCards(false)
     }
 
-    const setCardsList = (name: string, id: string) => {
+    const setCardsList = (name: string, id: string, _userId: string) => {
         setIsCards(true)
         setPackName(name)
         setPackId(id)
-    }
-
-    const profilePage = {
-        background: switchOn ? "#EBE0E9" : "#DCCCDB",
-        borderBottom: !switchOn ? "#21268F solid 3px" : "none",
-        opacity: switchOn ? "0.5" : "",
-        padding: "15px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        setUserId(_userId)
     }
 
     return (
@@ -66,7 +70,7 @@ export const MainPage: React.FC = () => {
                 <div style={{width: "200px"}}/>
             </div>
             <div className={style.currentPage}>
-                {isCards ? <CardsList packName={packName} packId={packId}/> : (switchOn
+                {isCards ? <CardsList packName={packName} packId={packId} userId={userId}/> : (switchOn
                     ? <PacksList isPrivate={false} setCardsList={setCardsList}/>
                     : <Profile isPrivate={true} setCardsList={setCardsList}/>)}
             </div>

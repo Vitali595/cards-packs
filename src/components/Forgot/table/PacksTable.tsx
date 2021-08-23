@@ -1,33 +1,33 @@
 import React, {ChangeEvent, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import style from "./PacksTable.module.css"
-import {AppRootStateType} from "../../../app/store";
+import {AppRootStateType} from "../../../app/store"
 import {
     createNewCardPackTC,
     deleteCardPackTC,
     setPacksListTC,
     updateCardPackTC
-} from "../../../reducers/r9-PacksReducer";
-import {ResponseType} from "../../../api/LoginAPI";
-import {SuperSmallButton} from "../../../common/c3-SuperSmallButton/SuperSmallButton";
-import {SuperButton} from "../../../common/c2-SuperButton/SuperButton";
-import {Paginator} from "../../../features/pagination/Paginator";
-import {Search} from "../../../features/search/Search";
-import {Modal} from "../../ModalWindow/ModalWindow";
-import {Button, TextField} from "@material-ui/core";
-import {Redirect, useHistory} from "react-router-dom";
+} from "../../../reducers/r9-PacksReducer"
+import {ResponseType} from "../../../api/LoginAPI"
+import {SuperSmallButton} from "../../../common/c3-SuperSmallButton/SuperSmallButton"
+import {SuperButton} from "../../../common/c2-SuperButton/SuperButton"
+import {Paginator} from "../../../features/pagination/Paginator"
+import {Search} from "../../../features/search/Search"
+import {Modal} from "../../ModalWindow/ModalWindow"
+import {Button, TextField} from "@material-ui/core"
+import {Redirect, useHistory} from "react-router-dom"
 
 type PacksTablePropsType = {
     header: string
     isPrivate: boolean
-    setCardsList: (packName: string, packId: string) => void
+    setCardsList: (packName: string, packId: string, userId: string) => void
 }
 
 export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate, setCardsList}) => {
 
-    const history = useHistory();
+    const history = useHistory()
     const dispatch = useDispatch()
-    const profile = useSelector<AppRootStateType, ResponseType>(state => state.signIn.profile)
+    const {profile} = useSelector((state: AppRootStateType) => state.signIn)
     const {
         cardPacks, page, pageCount, minCardsCount, maxCardsCount,
         sortPacks, cardPacksTotalCount, searchPackName
@@ -35,10 +35,10 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate, se
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [title, setTitle] = useState<string>("")
     const [updatingPackId, setUpdatingPackId] = useState("")
-    const onCloseUpdate = () => setUpdatingPackId("")
     const [deletedPackId, setDeletedPackId] = useState("")
     const onClose = () => setIsOpen(false)
     const onCloseDelete = () => setDeletedPackId("")
+    const onCloseUpdate = () => setUpdatingPackId("")
 
     // const setPrivatePacks = (e: ChangeEvent<HTMLInputElement>) => {
     //     setIsPrivatePacks(e.currentTarget.checked)
@@ -199,7 +199,7 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({header, isPrivate, se
                             )}
                             <tr className={style.tr} key={pack._id}>
                                 <td className={style.td}>
-                                    <div className={style.packName} onClick={() => setCardsList(pack.name, pack._id)}>{pack.name}</div>
+                                    <div className={style.packName} onClick={() => setCardsList(pack.name, pack._id, pack.user_id)}>{pack.name}</div>
                                 </td>
                                 <td className={style.td}>{pack.cardsCount}</td>
                                 <td className={style.td}>{pack.updated}</td>

@@ -13,7 +13,7 @@ import {PacksList} from "../PacksList/PacksList";
 
 type ProfilePropsType = {
 	isPrivate: boolean
-	setCardsList: (packName: string, packId: string) => void
+	setCardsList: (packName: string, packId: string, userId: string) => void
 }
 
 export const Profile: React.FC<ProfilePropsType> = ({ isPrivate, setCardsList }) => {
